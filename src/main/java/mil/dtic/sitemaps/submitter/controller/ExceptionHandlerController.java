@@ -19,6 +19,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHandlerController {
     
+    /**
+     * Default handler for exceptions
+     * @param request HTTP request resulting in exception
+     * @param e Exception to handle
+     * @return ResponseEntity to send to user
+     */
     @ExceptionHandler(value = {Exception.class, RuntimeException.class})
     public ResponseEntity<String> defaultErrorHandler(HttpServletRequest request, Exception e) {
 		return new ResponseEntity<>("an error has occurred", HttpStatus.INTERNAL_SERVER_ERROR);

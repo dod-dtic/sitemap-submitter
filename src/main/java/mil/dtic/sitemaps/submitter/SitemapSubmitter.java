@@ -12,20 +12,40 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.IOException;
 
+/**
+ * Utility for getting crawler names and crawler specifications, and for
+ * submitting sitemaps to crawlers.
+ * @author Battelle
+ */
 @Component
 public class SitemapSubmitter {
     @Autowired
     protected SitemapSubmitterConfiguration configuration;
     
+    /**
+     * 
+     * @return Names of all sitemap crawlers
+     */
     public String[] getCrawlers() {
     	return configuration.getCrawlers().keySet().toArray(new String[0]);
     }
 
+    /**
+     * 
+     * @param name Name of sitemap crawler
+     * @return Specification for sitemap crawler with given name, else null if not found
+     */
     public SitemapCrawlerSpecification getCrawler(String name) {
         SitemapCrawlerSpecification ret = configuration.getCrawler(name);
         return ret;
     }
     
+    /**
+     * Submit sitemap URL to sitemap crawler
+     * @param sitemap URL to sitemap to submit
+     * @param crawlers List of crawler names to submit to
+     * @return 
+     */
     public SitemapSubmitterResponse[] submitIndexRequests(String sitemap, String[] crawlers) {
         List<SitemapSubmitterResponse> responses = new ArrayList<>();
         if (crawlers != null) {
@@ -47,6 +67,12 @@ public class SitemapSubmitter {
         return responses.toArray(new SitemapSubmitterResponse[0]);
     }
 
+    /**
+     * Submit sitemap URL to sitemap crawler
+     * @param spec Sitemap crawler specification to submit sitemap to
+     * @param sitemap URL to sitemap to submit
+     * @return Result from request
+     */
     private SitemapSubmitterResponse sendGetRequest(SitemapCrawlerSpecification spec, String sitemap) {
         String urlTemplate = spec.getUrlTemplate();
         String urlString = String.format(urlTemplate, sitemap);

@@ -10,6 +10,10 @@ public class SitemapSubmitterApplication extends SpringBootServletInitializer {
 
 	private static Class<SitemapSubmitterApplication> applicationClass = SitemapSubmitterApplication.class;
 
+    /**
+     * Entry point into application
+     * @param args Command line arguments
+     */
 	public static void main(String[] args) {
 		SpringApplication.run(SitemapSubmitterApplication.class, args);
 	}
