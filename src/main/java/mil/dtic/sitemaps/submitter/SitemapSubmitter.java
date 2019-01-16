@@ -35,6 +35,7 @@ public class SitemapSubmitter {
                     SitemapSubmitterResponse response = new SitemapSubmitterResponse();
                     response.setName(crawler);
                     response.setSuccess(false);
+                    response.setName(crawler);
                     response.setMessage("Failed: Crawler Not Found");
                     responses.add(response);
                 } else {
@@ -52,6 +53,7 @@ public class SitemapSubmitter {
         URL url = null;
         SitemapSubmitterResponse ret = new SitemapSubmitterResponse();
         try {
+            URL sitemapUrl = new URL(sitemap);
             url = new URL(urlString);
         }
         catch (MalformedURLException ex) {

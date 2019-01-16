@@ -21,6 +21,6 @@ public class ExceptionHandlerController {
     
     @ExceptionHandler(value = {Exception.class, RuntimeException.class})
     public ResponseEntity<String> defaultErrorHandler(HttpServletRequest request, Exception e) {
-		return new ResponseEntity<String>("an error has occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>("an error has occurred", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

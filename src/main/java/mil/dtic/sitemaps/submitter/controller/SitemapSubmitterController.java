@@ -33,8 +33,12 @@ public class SitemapSubmitterController {
     }
     
     @RequestMapping(value={"/crawlers/{name}"}, method=RequestMethod.GET, produces = "application/json")
-    public SitemapCrawlerSpecification getCrawler(@PathVariable("name") String name) {
-    	return sitemapSubmitter.getCrawler(name);
+    public ResponseEntity<SitemapCrawlerSpecification> getCrawler(@PathVariable("name") String name) {
+        SitemapCrawlerSpecification ret = sitemapSubmitter.getCrawler(name);
+        if (ret == null) {
+            return new ResponseEntity<>(ret, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
     
     @RequestMapping(value={"/indexrequests"}, method=RequestMethod.POST, produces = "application/json")
@@ -48,9 +52,9 @@ public class SitemapSubmitterController {
         SitemapSubmitterResponses ret = new SitemapSubmitterResponses();
         ret.setResponses(responses);
         if (atLeastOneSucceeded) {
-        	return new ResponseEntity<SitemapSubmitterResponses>(ret, HttpStatus.OK);
+        	return new ResponseEntity<>(ret, HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<SitemapSubmitterResponses>(ret, HttpStatus.BAD_REQUEST);
+    		return new ResponseEntity<>(ret, HttpStatus.BAD_REQUEST);
     	}
     }
     
