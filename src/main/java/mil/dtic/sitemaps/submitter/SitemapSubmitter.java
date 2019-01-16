@@ -33,6 +33,7 @@ public class SitemapSubmitter {
                 SitemapCrawlerSpecification spec = configuration.getCrawler(crawler);
                 if (spec == null) {
                     SitemapSubmitterResponse response = new SitemapSubmitterResponse();
+                    response.setName(crawler);
                     response.setSuccess(false);
                     response.setMessage("Failed: Crawler Not Found");
                     responses.add(response);

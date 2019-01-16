@@ -50,7 +50,7 @@ public class SitemapSubmitterController {
         if (atLeastOneSucceeded) {
         	return new ResponseEntity<SitemapSubmitterResponses>(ret, HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<SitemapSubmitterResponses>(ret, HttpStatus.INTERNAL_SERVER_ERROR);
+    		return new ResponseEntity<SitemapSubmitterResponses>(ret, HttpStatus.BAD_REQUEST);
     	}
     }
     

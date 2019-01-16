@@ -56,5 +56,4 @@ Example:
 The response will be in JSON format and will contain an array of response objects (one for each crawler). Each repsonse object will contain the fields name (string, the name of the crawler), 
 success (Boolean, whether the request for that crawler succeeded), and message (string, additional information about the request). 
 
-The HTTP status code for the response will be 200 is any of the 
-crawlers requests succeeded (you will still need to inspect the responses to see if all requests succeeded), or 500 if all failed.
+The HTTP status code for the response will be 200 is any of the crawler requests succeeded (you will still need to inspect the responses to see if all requests succeeded), or 400 if all failed.
